@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherPro - Advanced Animation Features</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', Arial, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; 
+            min-height: 100vh; 
+            padding: 2rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .demo-section { 
+            background: rgba(255,255,255,0.1); 
+            backdrop-filter: blur(20px); 
+            border-radius: 1rem; 
+            padding: 2rem; 
+            margin: 2rem 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .feature-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2rem; 
+            margin: 2rem 0;
+        }
+        .feature-card { 
+            background: rgba(255,255,255,0.15); 
+            padding: 1.5rem; 
+            border-radius: 0.75rem; 
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover { transform: translateY(-5px) scale(1.02); }
+        .animation-demo { 
+            background: rgba(255,255,255,0.2); 
+            padding: 1rem; 
+            border-radius: 0.5rem; 
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .btn { 
+            background: #3b82f6; 
+            color: white; 
+            border: none; 
+            padding: 0.75rem 1.5rem; 
+            border-radius: 0.5rem; 
+            cursor: pointer; 
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .btn:hover { 
+            background: #2563eb; 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        .weather-icon-demo { 
+            display: inline-block; 
+            margin: 1rem; 
+            transition: transform 0.3s ease;
+        }
+        .weather-icon-demo:hover { transform: scale(1.2) rotate(5deg); }
+        h1, h2, h3 { margin-bottom: 1rem; }
+        .success { color: #10b981; font-weight: bold; }
+        .highlight { background: rgba(255,255,255,0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; }
+        .code-snippet { 
+            background: rgba(0,0,0,0.2); 
+            padding: 1rem; 
+            border-radius: 0.5rem; 
+            font-family: 'Courier New', monospace; 
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header style="text-align: center; margin-bottom: 3rem;">
+            <h1>🎨 WeatherPro Advanced Animation Features</h1>
+            <p>Experience the enhanced UI with smooth transitions, animated icons, and GSAP-powered animations</p>
+        </header>
+
+        <div class="demo-section">
+            <h2>✨ Enhanced CSS Transitions & Micro-Interactions</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🎯 Smooth Hover Effects</h3>
+                    <ul>
+                        <li><span class="success">✓</span> Button shimmer effects with CSS ::before pseudo-elements</li>
+                        <li><span class="success">✓</span> Input field lift and glow on focus</li>
+                        <li><span class="success">✓</span> Feature cards with bounce and scale transforms</li>
+                        <li><span class="success">✓</span> Custom easing functions (elastic, bounce, smooth)</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>⚡ Performance Optimized</h3>
+                    <ul>
+                        <li><span class="success">✓</span> Hardware-accelerated CSS transforms</li>
+                        <li><span class="success">✓</span> Reduced motion support for accessibility</li>
+                        <li><span class="success">✓</span> Optimized transition timing functions</li>
+                        <li><span class="success">✓</span> GPU-friendly animation properties</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="animation-demo">
+                <h4>Try the Enhanced Search Button:</h4>
+                <button class="btn" onclick="demoButtonClick(this)">
+                    <span>🔍 Get Weather</span>
+                </button>
+                <p><em>Notice the shimmer effect on hover and bounce on click!</em></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🌦️ Animated SVG Weather Icons</h2>
+            <div class="animation-demo">
+                <h4>Interactive Weather Icons:</h4>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin: 2rem 0;">
+                    <!-- Sun Icon -->
+                    <div class="weather-icon-demo">
+                        <svg width="80" height="80" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="20" fill="#FFD700" class="sun-core">
+                                <animateTransform attributeName="transform" type="rotate" 
+                                  values="0 50 50;360 50 50" dur="10s" repeatCount="indefinite"/>
+                            </circle>
+                            <g class="sun-rays">
+                                <rect x="48" y="10" width="4" height="15" fill="#FFD700" rx="2"/>
+                                <rect x="48" y="75" width="4" height="15" fill="#FFD700" rx="2"/>
+                                <rect x="10" y="48" width="15" height="4" fill="#FFD700" rx="2"/>
+                                <rect x="75" y="48" width="15" height="4" fill="#FFD700" rx="2"/>
+                                <animateTransform attributeName="transform" type="rotate" 
+                                  values="0 50 50;360 50 50" dur="15s" repeatCount="indefinite"/>
+                            </g>
+                        </svg>
+                        <p>☀️ Sunny</p>
+                    </div>
+
+                    <!-- Cloud Icon -->
+                    <div class="weather-icon-demo">
+                        <svg width="80" height="80" viewBox="0 0 100 100">
+                            <path d="M20 60 Q20 45, 35 45 Q40 35, 50 35 Q60 35, 65 45 Q80 45, 80 60 Q80 70, 70 70 L30 70 Q20 70, 20 60 Z" 
+                                  fill="#E0E7FF">
+                                <animateTransform attributeName="transform" type="translate" 
+                                  values="0 0;5 -2;0 0" dur="4s" repeatCount="indefinite"/>
+                            </path>
+                        </svg>
+                        <p>☁️ Cloudy</p>
+                    </div>
+
+                    <!-- Rain Icon -->
+                    <div class="weather-icon-demo">
+                        <svg width="80" height="80" viewBox="0 0 100 100">
+                            <path d="M20 45 Q20 30, 35 30 Q40 20, 50 20 Q60 20, 65 30 Q80 30, 80 45 Q80 55, 70 55 L30 55 Q20 55, 20 45 Z" 
+                                  fill="#E0E7FF"/>
+                            <circle cx="30" cy="65" r="2" fill="#3B82F6" opacity="0.8">
+                                <animate attributeName="cy" values="65;75;65" dur="1s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.8;0.4;0.8" dur="1s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="45" cy="70" r="2" fill="#3B82F6" opacity="0.6">
+                                <animate attributeName="cy" values="70;80;70" dur="1.2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="60" cy="65" r="2" fill="#3B82F6" opacity="0.8">
+                                <animate attributeName="cy" values="65;75;65" dur="0.8s" repeatCount="indefinite"/>
+                            </circle>
+                        </svg>
+                        <p>🌧️ Rainy</p>
+                    </div>
+
+                    <!-- Snow Icon -->
+                    <div class="weather-icon-demo">
+                        <svg width="80" height="80" viewBox="0 0 100 100">
+                            <path d="M20 45 Q20 30, 35 30 Q40 20, 50 20 Q60 20, 65 30 Q80 30, 80 45 Q80 55, 70 55 L30 55 Q20 55, 20 45 Z" 
+                                  fill="#E0E7FF"/>
+                            <g transform="translate(25,65)">
+                                <path d="M0,-6 L0,6 M-6,0 L6,0 M-4,-4 L4,4 M-4,4 L4,-4" stroke="#E0E7FF" stroke-width="1" fill="none">
+                                    <animateTransform attributeName="transform" type="rotate" 
+                                      values="0;360" dur="3s" repeatCount="indefinite"/>
+                                </path>
+                                <animateTransform attributeName="transform" type="translate" 
+                                  values="0 0;0 10;0 0" dur="2s" repeatCount="indefinite"/>
+                            </g>
+                            <g transform="translate(50,70)">
+                                <path d="M0,-6 L0,6 M-6,0 L6,0 M-4,-4 L4,4 M-4,4 L4,-4" stroke="#E0E7FF" stroke-width="1" fill="none">
+                                    <animateTransform attributeName="transform" type="rotate" 
+                                      values="0;-360" dur="4s" repeatCount="indefinite"/>
+                                </path>
+                            </g>
+                            <g transform="translate(75,65)">
+                                <path d="M0,-6 L0,6 M-6,0 L6,0 M-4,-4 L4,4 M-4,4 L4,-4" stroke="#E0E7FF" stroke-width="1" fill="none">
+                                    <animateTransform attributeName="transform" type="rotate" 
+                                      values="0;360" dur="3.5s" repeatCount="indefinite"/>
+                                </path>
+                            </g>
+                        </svg>
+                        <p>❄️ Snowy</p>
+                    </div>
+                </div>
+                <p><em>Each icon has unique animations: rotating sun rays, floating clouds, falling raindrops, and spinning snowflakes!</em></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🚀 GSAP-Powered Advanced Animations</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>📊 Page Load Sequence</h3>
+                    <ul>
+                        <li><span class="success">✓</span> Header fades in first</li>
+                        <li><span class="success">✓</span> Hero section slides from left/right</li>
+                        <li><span class="success">✓</span> Search container bounces in</li>
+                        <li><span class="success">✓</span> Feature cards stagger reveal</li>
+                        <li><span class="success">✓</span> Footer appears last</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>🌡️ Weather Data Animations</h3>
+                    <ul>
+                        <li><span class="success">✓</span> Weather card fades in smoothly</li>
+                        <li><span class="success">✓</span> City name slides from left</li>
+                        <li><span class="success">✓</span> Weather icon bounces in with elastic easing</li>
+                        <li><span class="success">✓</span> Data items stagger reveal with back.out easing</li>
+                        <li><span class="success">✓</span> Temperature displays with typewriter effect</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>⚠️ Error & Loading States</h3>
+                    <ul>
+                        <li><span class="success">✓</span> Error messages fade in with pulse effect</li>
+                        <li><span class="success">✓</span> Input field pulses on validation error</li>
+                        <li><span class="success">✓</span> Loading spinner with smooth CSS animations</li>
+                        <li><span class="success">✓</span> State transitions with GSAP timelines</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>🎛️ Interactive Elements</h3>
+                    <ul>
+                        <li><span class="success">✓</span> Recent searches dropdown with slideDown animation</li>
+                        <li><span class="success">✓</span> Button hover effects with shimmer</li>
+                        <li><span class="success">✓</span> Feature cards with transform effects</li>
+                        <li><span class="success">✓</span> Smooth transitions between all states</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="animation-demo">
+                <h4>GSAP Animation Functions Available:</h4>
+                <div class="code-snippet">
+// Fade in animation
+AnimationController.fadeIn(element, duration, delay)
+
+// Slide animations
+AnimationController.slideInFromLeft(element, duration, delay)
+AnimationController.slideInFromRight(element, duration, delay)
+
+// Bounce effect
+AnimationController.bounceIn(element, duration, delay)
+
+// Stagger reveal (multiple elements)
+AnimationController.staggerReveal(elements, duration, stagger)
+
+// Error pulse effect
+AnimationController.pulseError(element)
+
+// Typewriter effect
+AnimationController.typeWriter(element, text, duration)
+
+// Timeline creation
+const tl = AnimationController.createTimeline()
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🎨 Animation Features Summary</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🔧 CSS Enhancements</h3>
+                    <ul>
+                        <li><span class="highlight">Custom CSS Properties</span> for consistent animations</li>
+                        <li><span class="highlight">Micro-interactions</span> on hover, focus, and active states</li>
+                        <li><span class="highlight">Hardware acceleration</span> with transform properties</li>
+                        <li><span class="highlight">Accessibility support</span> with prefers-reduced-motion</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>📱 User Experience</h3>
+                    <ul>
+                        <li><span class="highlight">Professional feel</span> with smooth transitions</li>
+                        <li><span class="highlight">Visual feedback</span> for all user interactions</li>
+                        <li><span class="highlight">Loading states</span> that feel responsive</li>
+                        <li><span class="highlight">Error handling</span> with clear visual cues</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>⚡ Performance</h3>
+                    <ul>
+                        <li><span class="highlight">GSAP fallbacks</span> for browsers without GSAP</li>
+                        <li><span class="highlight">Optimized animations</span> using CSS transforms</li>
+                        <li><span class="highlight">Minimal JavaScript</span> for animation logic</li>
+                        <li><span class="highlight">Smooth 60fps</span> animations on modern devices</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>🌟 Visual Polish</h3>
+                    <ul>
+                        <li><span class="highlight">Animated SVG icons</span> for weather conditions</li>
+                        <li><span class="highlight">Glass morphism effects</span> with backdrop-filter</li>
+                        <li><span class="highlight">Staggered reveals</span> for data presentation</li>
+                        <li><span class="highlight">Elastic easing</span> for playful interactions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section" style="text-align: center;">
+            <h2>🎉 Ready to Experience the Enhanced WeatherPro!</h2>
+            <p style="margin: 1rem 0;">Your weather application now features enterprise-level animations and interactions.</p>
+            <div style="margin: 2rem 0;">
+                <button class="btn" onclick="window.open('pro.html', '_blank')" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                    🚀 Launch Enhanced WeatherPro
+                </button>
+            </div>
+            
+            <div style="background: rgba(16, 185, 129, 0.1); padding: 1.5rem; border-radius: 0.75rem; margin: 2rem 0; border: 1px solid rgba(16, 185, 129, 0.2);">
+                <h3 style="color: #10b981;">✨ What to Try:</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; text-align: left;">
+                    <div>
+                        <strong>🔍 Search Animation:</strong><br>
+                        Search for "London" and watch the smooth data reveal
+                    </div>
+                    <div>
+                        <strong>🎨 Hover Effects:</strong><br>
+                        Hover over buttons, cards, and input fields
+                    </div>
+                    <div>
+                        <strong>⚠️ Error States:</strong><br>
+                        Try empty search or invalid city names
+                    </div>
+                    <div>
+                        <strong>📱 Mobile-Friendly:</strong><br>
+                        All animations work smoothly on mobile
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function demoButtonClick(button) {
+            // Demo button animation
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+                button.innerHTML = '<span>✨ Animated!</span>';
+                setTimeout(() => {
+                    button.innerHTML = '<span>🔍 Get Weather</span>';
+                }, 2000);
+            }, 150);
+        }
+
+        // Add some demo interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate page elements on load
+            const cards = document.querySelectorAll('.feature-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        });
+    </script>
+</body>
+</html>
